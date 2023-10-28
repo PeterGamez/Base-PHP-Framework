@@ -1,0 +1,56 @@
+{
+    "consentModal": {
+        "label": "Cookie consent",
+        "description": "Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.",
+        "acceptAllBtn": "Accept all",
+        "showPreferencesBtn": "Manage preferences",
+        "title": "We use cookies!"
+    },
+    "preferencesModal": {
+        "title": "Cookie Preferences Setting",
+        "acceptAllBtn": "Accept all",
+        "acceptNecessaryBtn": "Accept only necessary",
+        "savePreferencesBtn": "Save preferences",
+        "closeIconLabel": "Close modal",
+        "serviceCounterLabel": "Service|Services",
+        "sections": [
+            {
+                "title": "Cookie Usage",
+                "description": "I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data."
+            },
+            {
+                "title": "Strictly Necessary Cookies <span class=\"pm__badge\">Always Enabled</span>",
+                "description": "These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly",
+                "linkedCategory": "necessary"
+            },
+            {
+                "title": "Functionality Cookies",
+                "description": "These cookies allow the website to remember the choices you have made in the past",
+                "linkedCategory": "functionality"
+            },
+            {
+                "title": "Analytics Cookies",
+                "description": "These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you",
+                "linkedCategory": "analytics",
+                "cookieTable": {
+                    "headers": {
+                        "name": "Name",
+                        "description": "Description",
+                        "Service": "Service"
+                    },
+                    "body": [
+                        {
+                            "name": "_ga*, _gid, google-analytics*",
+                            "description": "Used to track you",
+                            "Service": "Google Analytics"
+                        }
+                    ]
+                }
+            },
+            {
+                "title": "More information",
+                "description": "For any query in relation to my policy on cookies and your choices, please contact as live chat."
+            }
+        ]
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "consentModal": {
+        "label": "Cookie consent",
+        "description": "เว็บไซต์นี้ใช้คุกกี้ที่จำเป็นเพื่อให้แน่ใจว่ามีการทำงานที่เหมาะสมและติดตามคุกกี้เพื่อทำความเข้าใจว่าคุณโต้ตอบกับเว็บไซต์อย่างไร หลังจะถูกตั้งค่าหลังจากได้รับความยินยอมเท่านั้น",
+        "acceptAllBtn": "ยอมรับทั้งหมด",
+        "showPreferencesBtn": "จัดการการตั้งค่า",
+        "title": "We use cookies!"
+    },
+    "preferencesModal": {
+        "title": "Cookie Preferences Setting",
+        "acceptAllBtn": "ยอมรับทั้งหมด",
+        "acceptNecessaryBtn": "ยอมรับที่จำเป็น",
+        "savePreferencesBtn": "บันทึกการตั้งค่า",
+        "closeIconLabel": "Close modal",
+        "serviceCounterLabel": "Service|Services",
+        "sections": [
+            {
+                "title": "Cookie Usage",
+                "description": "เว็บไซต์นี้ใช้คุกกี้เพื่อให้แน่ใจว่าฟังก์ชันพื้นฐานของเว็บไซต์และเพื่อปรับปรุงประสบการณ์ออนไลน์ของคุณ คุณสามารถเลือกสำหรับแต่ละหมวดหมู่เพื่อเข้าร่วม/ไม่ใช้ได้ทุกเมื่อที่คุณต้องการ สำหรับรายละเอียดเพิ่มเติมเกี่ยวกับคุกกี้และข้อมูลที่ละเอียดอ่อนอื่นๆ"
+            },
+            {
+                "title": "Strictly Necessary Cookies <span class=\"pm__badge\">Always Enabled</span>",
+                "description": "คุกกี้เหล่านี้จำเป็นสำหรับการทำงานที่เหมาะสมของเว็บไซต์ของเรา หากไม่มีคุกกี้เหล่านี้ เว็บไซต์จะทำงานไม่ถูกต้อง",
+                "linkedCategory": "necessary"
+            },
+            {
+                "title": "Functionality Cookies",
+                "description": "คุกกี้เหล่านี้ช่วยให้เว็บไซต์จดจำตัวเลือกที่คุณได้ทำไว้ในอดีต",
+                "linkedCategory": "functionality"
+            },
+            {
+                "title": "Analytics Cookies",
+                "description": "คุกกี้เหล่านี้รวบรวมข้อมูลเกี่ยวกับวิธีที่คุณใช้เว็บไซต์ หน้าที่คุณเข้าชม และลิงก์ใดที่คุณคลิก ข้อมูลทั้งหมดจะไม่เปิดเผยชื่อและไม่สามารถใช้เพื่อระบุตัวตนของคุณได้",
+                "linkedCategory": "analytics",
+                "cookieTable": {
+                    "headers": {
+                        "name": "ชื่อ",
+                        "description": "คำอธิบาย",
+                        "Service": "บริการ"
+                    },
+                    "body": [
+                        {
+                            "name": "_ga*, _gid, google-analytics*",
+                            "description": "ใช้เพื่อติดตามคุณ",
+                            "Service": "Google Analytics"
+                        }
+                    ]
+                }
+            },
+            {
+                "title": "More information",
+                "description": "สำหรับข้อสงสัยเกี่ยวกับนโยบายของเราเกี่ยวกับคุกกี้และตัวเลือกของคุณ โปรดติดต่อผ่าน live chat"
+            }
+        ]
+    }
+}

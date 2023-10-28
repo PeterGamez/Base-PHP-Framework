@@ -1,0 +1,19 @@
+<?php
+
+$site = [
+    "name" => "",
+    "description" => "",
+    "logo" => [
+        "64" => "",
+        "128" => "",
+        "256" => "",
+        "ico" => "",
+    ],
+    "lang" => "th",
+    "useragent" => "API/1.0",
+
+    "admin_panel" => "/admin",
+    "member_panel" => "/member",
+];
+
+return $site;

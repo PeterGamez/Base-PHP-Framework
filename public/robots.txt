@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /member/
+Disallow: /cdn-cgi/
+Disallow: /challenge-platform/
+Sitemap: 

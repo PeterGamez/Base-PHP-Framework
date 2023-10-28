@@ -1,0 +1,9 @@
+# Editor Settings
+.vscode/
+
+# Config
+config/*.php
+
+# Composer
+composer.lock
+vendor/
