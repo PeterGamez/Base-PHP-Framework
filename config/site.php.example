@@ -10,6 +10,7 @@ $site = [
         "ico" => "",
     ],
     "lang" => "th",
+    "theme-color" => "#FFFFFF",
     "useragent" => "API/1.0",
 
     "admin_panel" => "/admin",

@@ -1,5 +1,10 @@
 {
+    "name": "petergamez/base-php-framework",
+    "type": "project",
+    "description": "Base PHP Framework",
+    "homepage": "https://github.com/PeterGamez/Base-PHP-Framework",
+    "license": "MIT",
     "require": {
-        "php": ">=8.1"
+        "php": "^8.1"
     }
 }

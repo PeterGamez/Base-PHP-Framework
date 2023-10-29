@@ -8,7 +8,7 @@
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="<?= $site['name'] ?>">
-    <meta name="theme-color" content="#333399">
+    <meta name="theme-color" content="<?= config('site.theme-color') ?>">
     <?php
     if ($site['social'] == true) {
     ?>
