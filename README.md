@@ -21,10 +21,19 @@ location / {
 }
 ```
 
+## กรณีใช้งานระบบ Trash (default false)
+- สำหรับใช้งานระบบ Trash
+1. ให้แก้ไขไฟล์ config/database ดังนี้
+```php
+'enable_trash' => true
+```
+1. เพื่ม Scheduled Tasks `cron 0 0 * * *`
+
+
 ## การใช้งาน helper
 - ตรวจสอบคำสั่งทั้งหมด
 ```bash
-php helper list
+php helper
 ```
 - สร้าง config ใหม่จาก .example โดยใช้คำสั่ง
 ```bash
