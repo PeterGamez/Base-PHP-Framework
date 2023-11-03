@@ -6,13 +6,21 @@ use Exception;
 
 class Model extends DataSelect
 {
+    // Get manager id
+    public static function getManager(): string
+    {
+        return $_SESSION['account']['id'];
+    }
+
     // Main function
     public static function create(array $newData): int
     {
+        $manager = self::getManager();
+
         if (isset($newData['create_at'])) unset($newData['create_at']);
-        $newData['create_by'] = $_SESSION['user_id'];
+        $newData['create_by'] = $manager;
         if (isset($newData['update_at'])) unset($newData['update_at']);
-        $newData['update_by'] = $_SESSION['user_id'];
+        $newData['update_by'] = $manager;
 
         $table = self::parseTable();
         $sql = "INSERT INTO $table" . self::buildInsertData($newData);
@@ -26,10 +34,10 @@ class Model extends DataSelect
         return $instance;
     }
 
-    public static function findOne(array $conditions, string $operator = ''): array
+    public static function findOne(array $conditions, string $operator = '', $isTrash = 0): ?array
     {
         $table = self::parseTable();
-        $sql = "SELECT * FROM $table" . self::buildWhereClause($conditions, $operator);
+        $sql = "SELECT * FROM $table" . self::buildWhereClause($conditions, $operator, $isTrash);
         return self::buildFindOne($sql, $conditions);
     }
 
@@ -42,10 +50,12 @@ class Model extends DataSelect
 
     public static function update(array $conditions, array $newData): int
     {
+        $manager = self::getManager();
+
         if (isset($newData['create_at'])) unset($newData['create_at']);
         if (isset($newData['create_by'])) unset($newData['create_by']);
         if (isset($newData['update_at'])) unset($newData['update_at']);
-        $newData['update_by'] = $_SESSION['user_id'];
+        $newData['update_by'] = $manager;
 
         $table = self::parseTable();
         $sql = "UPDATE $table" . self::buildSetData($newData) . self::buildWhereClause($conditions);
@@ -54,9 +64,11 @@ class Model extends DataSelect
 
     public static function delete(array $conditions): int
     {
+        $manager = self::getManager();
+
         $table = self::parseTable();
         if (config('database.trash.enabled') === true) {
-            $sql = "UPDATE $table SET isTrash = '1', update_by = $_SESSION[user_id]" . self::buildWhereClause($conditions);
+            $sql = "UPDATE $table SET isTrash = '1', update_by = " . $manager . self::buildWhereClause($conditions);
         } else {
             $sql = "DELETE FROM $table" . self::buildWhereClause($conditions);
         }
@@ -65,9 +77,11 @@ class Model extends DataSelect
 
     public static function restore(array $conditions): int
     {
+        $manager = self::getManager();
+
         if (config('database.trash.enabled') === false) throw new Exception("Trash is disabled.");
         $table = self::parseTable();
-        $sql = "UPDATE $table SET isTrash = '0', update_by = $_SESSION[user_id]" . self::buildWhereClause($conditions, '', 1);
+        $sql = "UPDATE $table SET isTrash = '0', update_by = " . $manager . self::buildWhereClause($conditions, '', 1);
         return self::buildUpdate($sql, $conditions, []);
     }
 
@@ -130,7 +144,6 @@ class Model extends DataSelect
             $bindParams[] = $value;
         }
         $stmt->bind_param($types, ...$bindParams);
-        return;
     }
 
     // Build Data
@@ -173,14 +186,18 @@ class Model extends DataSelect
         $operatorString = ($operator === "OR") ? " OR " : " AND ";
 
         $trash = "";
-        if (config('database.trash.enabled') === true) {
-            $trash = " AND isTrash = '0'";
-            if ($isTrash === 1) {
-                $trash = " AND isTrash = '1'";
-            } else if ($isTrash === 2) {
+        if (config('database.trash.enabled') == true) {
+            $trash = "isTrash = '0'";
+            if ($isTrash == 1) {
+                $trash = "isTrash = '1'";
+            } else if ($isTrash == 2) {
                 $trash = "";
             }
+            if (count($query) > 0 and $trash) {
+                $trash = " AND $trash";
+            }
         }
+        if (count($query) == 0 and empty($trash)) return "";
         return " WHERE " . implode($operatorString, $query) . $trash;
     }
 
@@ -191,6 +208,8 @@ class Model extends DataSelect
         foreach ($group as $field) {
             $query[] = $field;
         }
+
+        if (count($query) == 0) return "";
 
         return " GROUP BY " . implode(", ", $query);
     }

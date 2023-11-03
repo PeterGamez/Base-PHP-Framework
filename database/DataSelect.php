@@ -9,7 +9,7 @@ class DataSelect
     protected $jointable = [];
     protected $whereConditions = [];
     protected $whereTrash;
-    protected $whereOperator;
+    protected $whereOperator = 'AND';
     protected $bindParams = [];
     protected $order = [];
     protected $group = [];
@@ -38,21 +38,24 @@ class DataSelect
         return $this;
     }
 
-    final public function join(string $table, string $column1, string $column2): self
+    final public function join(string $table, string $column1, string $column2, string $tablealias = null): self
     {
-        $this->jointable[] = " INNER JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
+        if ($tablealias) $this->jointable[] = " JOIN $table AS $tablealias ON $tablealias.$column1 = " . $this->maintable . ".$column2";
+        else $this->jointable[] = " JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
         return $this;
     }
 
-    final public function leftJoin(string $table, string $column1, string $column2): self
+    final public function leftJoin(string $table, string $column1, string $column2, string $tablealias = null): self
     {
-        $this->jointable[] = " LEFT JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
+        if ($tablealias) $this->jointable[] = " LEFT JOIN $table AS $tablealias ON $tablealias.$column1 = " . $this->maintable . ".$column2";
+        else $this->jointable[] = " LEFT JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
         return $this;
     }
 
-    final public function rightJoin(string $table, string $column1, string $column2): self
+    final public function rightJoin(string $table, string $column1, string $column2, string $tablealias = null): self
     {
-        $this->jointable[] = " RIGHT JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
+        if ($tablealias) $this->jointable[] = " RIGHT JOIN $table AS $tablealias ON $tablealias.$column1 = " . $this->maintable . ".$column2";
+        else $this->jointable[] = " RIGHT JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
         return $this;
     }
 
@@ -175,11 +178,11 @@ class DataSelect
 
     private function query(): void
     {
-        if (!empty($this->jointable)) {
+        if ($this->jointable) {
             $this->query .= implode(' ', $this->jointable);
         }
 
-        if (!empty($this->whereConditions)) {
+        if ($this->whereConditions) {
             $this->query .= " WHERE " . implode(' ' . $this->whereOperator . ' ', $this->whereConditions);
             if ($this->isTrash === true) {
                 if ($this->whereTrash) {
@@ -208,15 +211,15 @@ class DataSelect
             }
         }
 
-        if (!empty($this->order)) {
+        if ($this->order) {
             $this->query .= " ORDER BY " . implode(', ', $this->order);
         }
 
-        if (!empty($this->group)) {
+        if ($this->group) {
             $this->query .= " GROUP BY " . implode(', ', $this->group);
         }
 
-        if (!empty($this->limit)) {
+        if ($this->limit) {
             $this->query .= " LIMIT " . $this->limit;
         }
     }

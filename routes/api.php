@@ -2,6 +2,8 @@
 
 use App\Class\Api;
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json; charset=UTF-8');
 
 $agent_request = array_slice($agent_request, 2);
