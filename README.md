@@ -27,8 +27,10 @@ location / {
 ```php
 'enable_trash' => true
 ```
-1. เพื่ม Scheduled Tasks `cron 0 0 * * *`
-
+2. เพื่ม Scheduled Tasks `cron 0 0 * * *`
+```bash
+php helper trash:clearAllTrash
+```
 
 ## การใช้งาน helper
 - ตรวจสอบคำสั่งทั้งหมด

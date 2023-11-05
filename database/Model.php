@@ -67,7 +67,7 @@ class Model extends DataSelect
         $manager = self::getManager();
 
         $table = self::parseTable();
-        if (config('database.trash.enabled') === true) {
+        if (config('database.trash.enabled') == true) {
             $sql = "UPDATE $table SET isTrash = '1', update_by = " . $manager . self::buildWhereClause($conditions);
         } else {
             $sql = "DELETE FROM $table" . self::buildWhereClause($conditions);
@@ -98,7 +98,7 @@ class Model extends DataSelect
     final public static function status(): array
     {
         $table = self::parseTable();
-        $sql = "SHOW TABLE STATUS LIKE $table";
+        $sql = "SHOW TABLE STATUS LIKE '$table'";
         return self::buildStatus($sql);
     }
 
@@ -308,6 +308,6 @@ class Model extends DataSelect
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
 
-        return $result[0][0] ?? null;
+        return $result[0] ?? null;
     }
 }
