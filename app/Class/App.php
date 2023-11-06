@@ -22,7 +22,7 @@ class App
         $ip = 'Unknown';
         $cdn = null;
         $country = 'Unknown';
-        if ($_SERVER['HTTP_CDN_LOOP'] == 'cloudflare') {
+        if (isset($_SERVER['HTTP_CDN_LOOP']) and $_SERVER['HTTP_CDN_LOOP'] == 'cloudflare') {
             $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
             $cdn = $_SERVER['HTTP_CDN_LOOP'];
             $country = $_SERVER['HTTP_CF_IPCOUNTRY'];
@@ -66,10 +66,10 @@ class App
      * @param bool $time แสดงเวลาด้วยหรือไม่
      * @param bool $second แสดงวินาทีด้วยหรือไม่
      */
-    final public static function th_date(string $datetime, int $format = 0, bool $time = false, bool $second = false): string
+    final public static function th_date(string $datetime, int $format = 0, bool $istime = false, bool $issecond = false): string
     {
         list($date, $time) = explode(' ', $datetime);
-        list($H, $i) = explode(':', $time);
+        list($H, $i, $s) = explode(':', $time);
         list($Y, $m, $d) = explode('-', $date);
         $Y = $Y + 543;
 
@@ -79,10 +79,10 @@ class App
         );
 
         $date =  $d . ' ' . $month[$format][$m] . ' ' . $Y;
-        if ($time == true) {
+        if ($istime == true) {
             $date .= ' ' . $H . ':' . $i;
-            if ($second == true) {
-                $date .= ':' . $second;
+            if ($issecond == true) {
+                $date .= ':' . $s;
             }
         }
         return $date;
@@ -94,10 +94,10 @@ class App
      * @param bool $time แสดงเวลาด้วยหรือไม่
      * @param bool $second แสดงวินาทีด้วยหรือไม่
      */
-    final public static function en_date(string $datetime, int $format = 0, bool $time = false, bool $second = false): string
+    final public static function en_date(string $datetime, int $format = 0, bool $istime = false, bool $issecond = false): string
     {
         list($date, $time) = explode(' ', $datetime);
-        list($H, $i) = explode(':', $time);
+        list($H, $i, $s) = explode(':', $time);
         list($Y, $m, $d) = explode('-', $date);
 
         $month = array(
@@ -106,10 +106,10 @@ class App
         );
 
         $date =  $d . ' ' . $month[$format][$m] . ' ' . $Y;
-        if ($time == true) {
+        if ($istime == true) {
             $date .= ' ' . $H . ':' . $i;
-            if ($second == true) {
-                $date .= ':' . $second;
+            if ($issecond == true) {
+                $date .= ':' . $s;
             }
         }
         return $date;
