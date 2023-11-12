@@ -12,11 +12,11 @@ class Model
         "clearAllTrash" => "Clear all trash",
     ];
 
-    final public static function make($table)
+    final public static function make($model)
     {
-        $model = self::parse($table);
+        $table = self::parse($model);
 
-        if (file_exists(__ROOT__ . "/app/Models/$table.php")) die("Model $table already exists.\n");
+        if (file_exists(__ROOT__ . "/app/Models/$model.php")) die("Model $model already exists.\n");
         $content = <<<EOF
 <?php
 
@@ -33,17 +33,17 @@ EOF;
         $db = new Database();
         $db->create($table);
 
-        file_put_contents(__ROOT__ . "/app/Models/$table.php", $content);
+        file_put_contents(__ROOT__ . "/app/Models/$model.php", $content);
 
-        echo "Model $table created successfully.\n";
+        echo "Model $model created successfully.\n";
     }
 
-    final public static function clearTrash($table)
+    final public static function clearTrash($model)
     {
-        $model = self::parse($table);
+        $table = self::parse($model);
 
         $db = new Database();
-        $db->clearTrash($model);
+        $db->clearTrash($table);
 
         echo "Trash cleared successfully.\n";
     }
