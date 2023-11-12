@@ -49,22 +49,6 @@ function resources($key, $url = true)
     return null;
 }
 
-function storages($key)
-{
-    global $site, $request;
-
-    $storagePath = __ROOT__ . '/public/storages/' . $key;
-    if (file_exists($storagePath)) {
-        $value = explode('.', $key);
-        $key = $value[0];
-        array_shift($value);
-        $ext = implode('.', $value);
-
-        return url('storages/' . $key, $ext);
-    }
-    return null;
-}
-
 function url($path = '', $ext = ''): string
 {
     $protocol = $_SERVER['REQUEST_SCHEME'] . '://';
