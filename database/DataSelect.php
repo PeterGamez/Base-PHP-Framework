@@ -2,6 +2,8 @@
 
 namespace Database;
 
+use Exception;
+
 class DataSelect
 {
     protected $maintable;
@@ -142,14 +144,14 @@ class DataSelect
 
     final public function withTrash(): self
     {
-        if ($this->isTrash === false) die("Trash is disabled.\n");
+        if ($this->isTrash === false) throw new Exception("Trash is disabled.\n");
         $this->whereTrash = "";
         return $this;
     }
 
     final public function onlyTrash(): self
     {
-        if ($this->isTrash === false) die("Trash is disabled.\n");
+        if ($this->isTrash === false) throw new Exception("Trash is disabled.\n");
         if ($this->jointable) {
             $this->whereTrash = $this->maintable . ".isTrash = '1'";
         } else {
@@ -158,15 +160,19 @@ class DataSelect
         return $this;
     }
 
-    final public function orderBy(string ...$columns): self
+    final public function orderBy(string $columns, string $order = 'ASC'): self
     {
-        $this->order = $columns;
+        $order = strtoupper($order);
+        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
+        $this->order[] = "$columns $order";
         return $this;
     }
 
-    final public function groupBy(string ...$columns): self
+    final public function groupBy(string $columns, string $order = 'ASC'): self
     {
-        $this->group = $columns;
+        $order = strtoupper($order);
+        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
+        $this->group[] = "$columns $order";
         return $this;
     }
 

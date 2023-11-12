@@ -7,10 +7,10 @@ use Exception;
 try {
     $conn = mysqli_connect(config('database.host'), config('database.user'), config('database.password'), config('database.database'));
     if (!$conn) {
-        die('Connection failed: ' . mysqli_connect_error());
+        throw new Exception('Connection failed: ' . mysqli_connect_error());
     }
 } catch (Exception $e) {
-    die('Exception: database connection failed');
+    throw new Exception('Exception: database connection failed');
 }
 
 mysqli_set_charset($conn, 'utf8');

@@ -143,6 +143,7 @@ class Model extends DataSelect
             }
             $bindParams[] = $value;
         }
+        if (strlen($types) != count($bindParams)) throw new Exception("Error Processing Request");
         $stmt->bind_param($types, ...$bindParams);
     }
 
