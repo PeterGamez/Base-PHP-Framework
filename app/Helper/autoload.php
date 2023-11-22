@@ -14,7 +14,7 @@ define("MAGENTA", "\033[35m");
 define("CYAN", "\033[36m");
 define("WHITE", "\033[37m");
 
-loaddir(__ROOT__ . '/app/helper/Console');
+loaddir(__ROOT__ . '/app/Helper/Console');
 
 if (!isset($argv[1])) {
     return Console\Module::list();
