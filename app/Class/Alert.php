@@ -21,7 +21,7 @@ class Alert
     final public static function alerts(string $title, string $icon, int $timer, string $willClose): string
     {
         return "<head>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.23/sweetalert2.all.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js'></script>
         </head>
         <body>
             <script>
@@ -40,7 +40,7 @@ class Alert
     final public static function alerts2(string $title, string $html, string $icon, int $timer, string $willClose): string
     {
         return "<head>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.23/sweetalert2.all.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js'></script>
         </head>
         <body>
             <script>
