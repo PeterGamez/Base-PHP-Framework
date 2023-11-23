@@ -29,7 +29,7 @@ location / {
 ```
 2. เพื่ม Scheduled Tasks `cron 0 0 * * *`
 ```bash
-php helper trash:clearAllTrash
+php helper model:clearAllTrash
 ```
 
 ## การใช้งาน helper
