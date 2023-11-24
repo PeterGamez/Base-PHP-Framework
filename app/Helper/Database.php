@@ -58,7 +58,7 @@ class Database
 
         $tables = [];
         foreach ($result as $row) {
-            $tables[] = $row[0];
+            $tables[] = $row['Tables_in_' . config('database.database')];
         }
 
         return $tables;
