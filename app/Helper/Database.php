@@ -45,7 +45,7 @@ class Database
 
     public function clearTrash($table)
     {
-        $sql = "DELETE FROM `$table` WHERE `isTrash` = 1 AND `update_at` < DATE_SUB(NOW(), INTERVAL " . config('database.trash.day') . " DAY)";
+        $sql = "DELETE FROM `$table` WHERE `isTrash` = '1' AND `update_at` < DATE_SUB(NOW(), INTERVAL " . config('database.trash.day') . " DAY)";
 
         mysqli_query($this->conn, $sql);
     }
