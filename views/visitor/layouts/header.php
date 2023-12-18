@@ -42,7 +42,7 @@
     <!-- Site icon -->
     <link rel="icon" href="<?= config('site.logo.64') ?>" type="image/png" sizes="64x64">
     <link rel="icon" href="<?= config('site.logo.128') ?>" type="image/png" sizes="128x128">
-    <link rel="shortcut icon" href="<?= config('site.logo.ico') ?>" type="image/x-icon">
+    <link rel="icon" href="<?= config('site.logo.ico') ?>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<?= config('site.logo.64') ?>">
 
     <?= visitor_views('layouts/header_cdn') ?>
