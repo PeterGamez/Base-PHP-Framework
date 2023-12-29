@@ -4,7 +4,8 @@
         "description": "เว็บไซต์นี้ใช้คุกกี้ที่จำเป็นเพื่อให้แน่ใจว่ามีการทำงานที่เหมาะสมและติดตามคุกกี้เพื่อทำความเข้าใจว่าคุณโต้ตอบกับเว็บไซต์อย่างไร หลังจะถูกตั้งค่าหลังจากได้รับความยินยอมเท่านั้น",
         "acceptAllBtn": "ยอมรับทั้งหมด",
         "showPreferencesBtn": "จัดการการตั้งค่า",
-        "title": "We use cookies!"
+        "title": "We use cookies!",
+        "footer": "<a href=\"/privacy\">ความเป็นส่วนตัว</a>\n<a href=\"/terms\">เงื่อนไขการให้บริการ</a>"
     },
     "preferencesModal": {
         "title": "Cookie Preferences Setting",

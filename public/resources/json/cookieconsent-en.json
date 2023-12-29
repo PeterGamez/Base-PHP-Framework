@@ -4,7 +4,8 @@
         "description": "Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.",
         "acceptAllBtn": "Accept all",
         "showPreferencesBtn": "Manage preferences",
-        "title": "We use cookies!"
+        "title": "We use cookies!",
+        "footer": "<a href=\"/privacy\">Privacy</a>\n<a href=\"/terms\">Terms and Conditions</a>"
     },
     "preferencesModal": {
         "title": "Cookie Preferences Setting",
