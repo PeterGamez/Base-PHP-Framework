@@ -26,7 +26,17 @@ $command = explode(':', $argv[1]);
 $cmd = $command[0];
 $action = $command[1];
 
-if ($cmd == 'model') {
+if ($cmd == 'config') {
+    if ($action == 'make') {
+        return Console\Config::make();
+    }
+} else if ($cmd == 'controller') {
+    if ($action == 'make') {
+        if (!isset($argv[2])) die("Please enter controller name.");
+
+        return Console\Controller::make($argv[2]); // $argv[2] is the table name
+    }
+} elseif ($cmd == 'model') {
     if ($action == 'make') {
         if (!isset($argv[2])) die("Please enter table name.");
 
@@ -41,10 +51,6 @@ if ($cmd == 'model') {
         if (config('database.trash.enabled') == false) die("Trash is disabled.\n");
 
         return Console\Model::clearAllTrash();
-    }
-} else if ($cmd == 'config') {
-    if ($action == 'make') {
-        return Console\Config::make();
     }
 } else if ($cmd == 'module') {
     if ($action == 'list') {

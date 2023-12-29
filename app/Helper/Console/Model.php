@@ -9,7 +9,7 @@ class Model
     public static $description = [
         "make" => "Create new model",
         "clearTrash" => "Clear trash",
-        "clearAllTrash" => "Clear all trash",
+        "clearAllTrash" => "Clear all trash"
     ];
 
     final public static function make($model)
