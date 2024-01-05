@@ -80,7 +80,7 @@ class DataSelect
         return $this;
     }
 
-    final public function whereNot(string $column, string $value): self
+    final public function whereNot(string $column, string|array $value): self
     {
         if (is_array($value)) {
             $placeholders = implode(', ', array_fill(0, count($value), '?'));
@@ -93,7 +93,7 @@ class DataSelect
         return $this;
     }
 
-    final public function whereLike(string $column, string $value): self
+    final public function whereLike(string $column, string|array $value): self
     {
         $this->whereConditions[] = "$column LIKE ?";
         $this->bindParams[] = $value;
