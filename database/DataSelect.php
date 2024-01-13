@@ -16,6 +16,7 @@ class DataSelect
     protected $order = [];
     protected $group = [];
     protected $limit;
+    protected $offset;
     protected $isTrash;
 
     protected function __construct(string $table, array $conditions = null)
@@ -63,7 +64,7 @@ class DataSelect
 
     final public function fullJoin(string $table, string $column1, string $column2): self
     {
-        $this->jointable[] = " FULL JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
+        $this->jointable[] = " FULL OUTER JOIN $table ON $table.$column1 = " . $this->maintable . ".$column2";
         return $this;
     }
 
@@ -182,6 +183,12 @@ class DataSelect
         return $this;
     }
 
+    final public function offset(int $value): self
+    {
+        $this->offset = $value;
+        return $this;
+    }
+
     private function query(): void
     {
         if ($this->jointable) {
@@ -227,6 +234,10 @@ class DataSelect
 
         if ($this->limit) {
             $this->query .= " LIMIT " . $this->limit;
+        }
+
+        if ($this->offset) {
+            $this->query .= " OFFSET " . $this->offset;
         }
     }
 
