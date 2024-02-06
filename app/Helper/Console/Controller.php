@@ -14,9 +14,7 @@ class Controller
         $content = <<<EOF
 <?php
 
-namespace App\Models;
-
-use Database\Model;
+namespace App\Controllers;
 
 class $controller
 {

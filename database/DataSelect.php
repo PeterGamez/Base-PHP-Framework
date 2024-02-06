@@ -143,6 +143,34 @@ class DataSelect
         return $this;
     }
 
+    final public function groupBy(string $columns, string $order = 'ASC'): self
+    {
+        $order = strtoupper($order);
+        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
+        $this->group[] = "$columns $order";
+        return $this;
+    }
+
+    final public function orderBy(string $columns, string $order = 'ASC'): self
+    {
+        $order = strtoupper($order);
+        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
+        $this->order[] = "$columns $order";
+        return $this;
+    }
+
+    final public function limit(int $value): self
+    {
+        $this->limit = $value;
+        return $this;
+    }
+
+    final public function offset(int $value): self
+    {
+        $this->offset = $value;
+        return $this;
+    }
+
     final public function withTrash(): self
     {
         if ($this->isTrash === false) throw new Exception("Trash is disabled.\n");
@@ -158,34 +186,6 @@ class DataSelect
         } else {
             $this->whereTrash = "isTrash = '1'";
         }
-        return $this;
-    }
-
-    final public function orderBy(string $columns, string $order = 'ASC'): self
-    {
-        $order = strtoupper($order);
-        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
-        $this->order[] = "$columns $order";
-        return $this;
-    }
-
-    final public function groupBy(string $columns, string $order = 'ASC'): self
-    {
-        $order = strtoupper($order);
-        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
-        $this->group[] = "$columns $order";
-        return $this;
-    }
-
-    final public function limit(int $value): self
-    {
-        $this->limit = $value;
-        return $this;
-    }
-
-    final public function offset(int $value): self
-    {
-        $this->offset = $value;
         return $this;
     }
 
@@ -224,12 +224,12 @@ class DataSelect
             }
         }
 
-        if ($this->order) {
-            $this->query .= " ORDER BY " . implode(', ', $this->order);
-        }
-
         if ($this->group) {
             $this->query .= " GROUP BY " . implode(', ', $this->group);
+        }
+
+        if ($this->order) {
+            $this->query .= " ORDER BY " . implode(', ', $this->order);
         }
 
         if ($this->limit) {
