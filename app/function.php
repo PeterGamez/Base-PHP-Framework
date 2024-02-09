@@ -91,9 +91,13 @@ function redirect($path): void
     exit;
 }
 
-function views($filename): void
+function views($filename, $data = null): void
 {
-    global $site, $request;
+    global $site;
+
+    if ($data) {
+        extract($data);
+    }
 
     $filename = str_replace('.', '/', $filename);
     $viewPath = __ROOT__ . '/views/' . $filename . '.php';
@@ -102,30 +106,26 @@ function views($filename): void
     }
 }
 
-function admin_views($path = ''): void
+function admin_views($path = '', $data = null): void
 {
-    global $site, $request;
-
-    views('admin/' . $path);
+    views('admin/' . $path, $data);
 }
 
-function member_views($path = ''): void
+function member_views($path = '', $data = null): void
 {
-    global $site, $request;
-
-    views('member/' . $path);
+    views('member/' . $path, $data);
 }
 
-function visitor_views($path = ''): void
+function visitor_views($path = '', $data = null): void
 {
-    global $site, $request;
-
-    views('visitor/' . $path);
+    views('visitor/' . $path, $data);
 }
 
-function api($method, $filename): void
+function api($method, $filename, $data = null): void
 {
-    global $request;
+    if ($data) {
+        extract($data);
+    }
 
     if (str_contains($method, '|')) {
         $methods = explode('|', $method);
