@@ -2,10 +2,10 @@
 
 ## ขั้นตอนการติดตั้ง
 
-### กรณีมี path public
+### กรณีมี public path
 - ไม่ต้องทำอะไรเพิ่มเติม
 
-### กรณีไม่มี path public
+### กรณีไม่มี public path
 - สำหรับ apache ให้เพื่มไฟล์ .htaccess ดังนี้ ใน root directory
 ```bash
 RewriteEngine on
