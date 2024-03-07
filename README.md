@@ -6,8 +6,8 @@
 - [โครงสร้างโฟลเดอร์](#โครงสร้างโฟลเดอร์)
 - [ข้อกำหนดของเซิร์ฟเวอร์](#ข้อกำหนดของเซิร์ฟเวอร์)
 - [ขั้นตอนการติดตั้ง](#ขั้นตอนการติดตั้ง)
-- [ใช้งานระบบ Trash (default false)](#ใช้งานระบบ-trash-default-false)
 - [การใช้งาน Helper](#การใช้งาน-helper)
+- [ใช้งานระบบ Trash (default false)](#ใช้งานระบบ-trash-default-false)
 - [การใช้งาน Route](#การใช้งาน-route)
 - [การใช้งาน Model](#การใช้งาน-model)
 - [กาารใช้งาน Validate](#กาารใช้งาน-validate)
@@ -34,7 +34,7 @@
 
 ## ข้อกำหนดของเซิร์ฟเวอร์
 - PHP 8.1 ขึ้นไป
-- ฐานข้อมูล MySQL หรือ MariaDB
+- ฐานข้อมูล MySQL หรือ MariaDB (แนะนำ)
 - DNS ผ่าน Cloudflare (แนะนำ)
 - ประเภทเซิร์ฟเวอร์ Apache หรือ Nginx
 - ทำงานผ่าน Root URL
@@ -60,6 +60,12 @@ location / {
 }
 ```
 
+## การใช้งาน Helper
+- ตรวจสอบคำสั่งทั้งหมด
+```bash
+php helper
+```
+
 ## ใช้งานระบบ Trash (default false)
 - สำหรับใช้งานระบบ Trash
 1. ให้แก้ไขไฟล์ config/database ดังนี้
@@ -69,20 +75,6 @@ location / {
 2. เพื่ม Scheduled Tasks `cron 0 0 * * *`
 ```bash
 php helper model:clearAllTrash
-```
-
-## การใช้งาน Helper
-- ตรวจสอบคำสั่งทั้งหมด
-```bash
-php helper
-```
-- สร้าง config ใหม่จาก .example โดยใช้คำสั่ง
-```bash
-php helper make:config
-```
-- สร้าง model ใหม่ โดยใช้คำสั่ง
-```bash
-php helper make:model <ชื่อ model>
 ```
 
 ## การใช้งาน Route
@@ -102,13 +94,13 @@ php helper make:model <ชื่อ model>
 ตัวอย่างการใช้งาน
 ```php
 Route::get('/', function (Request $request) {
-    return 'Hello World';
+    Respond::text('Hello World');
 });
 
 Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/user/{id}', function (Request $request, string $id) {
-    return 'User ID: ' . $id;
+    Respond::text('User ID: ' . $id);
 });
 
 Route::get('/request/*', function (Request $request, string $patten = null) {
@@ -117,15 +109,17 @@ Route::get('/request/*', function (Request $request, string $patten = null) {
 
 Route::group('admin', function () {
     Route::get('/', function (Request $request) {
-        return 'Admin';
+        Respond::text('Admin');
     });
     Route::post('/create', [AdminController::class, 'create']);
     Route::match(['post','put'], '/update/{id}', function (Request $request, string $id) {
-        return 'Update ID: ' . $id;
+        Respond::text('Update ID: ' . $id);
     });
 });
 
 Route::redirect('/here', '/there');
+
+Respond::status(404)::text('404 Not Found');
 ```
 
 ## การใช้งาน Model
