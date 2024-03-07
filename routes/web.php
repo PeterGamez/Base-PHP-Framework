@@ -1,9 +1,34 @@
 <?php
 
-use App\Class\App;
+use App\Controllers\View;
+use App\Models\Account;
+use System\Router\Request;
+use System\Router\Respond;
+use System\Router\Route;
 
-array_shift($agent_request);
+Route::get('/', function (Request $request) {
+    Respond::text('Hello, World!');
+});
 
-if (empty($agent_request[0]) and App::isGET()) {
-    return visitor_views('index');
-}
+Route::get('/request/*', function (Request $request, string $patten = null) {
+    Respond::json($request);
+});
+
+Route::post('/create', function (Request $request) {
+    $validate = $request->validate([
+        'name' => 'required|min:3|max:10',
+        'email' => 'required|email'
+    ]);
+    if ($validate->error) {
+        Respond::json($validate);
+    } else {
+        Account::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ]);
+    }
+});
+
+Route::get('/home', [View::class, 'home']);
+
+Respond::status(404)::text('404 Not Found');

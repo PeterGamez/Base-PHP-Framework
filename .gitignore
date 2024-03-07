@@ -1,9 +1,13 @@
 # Editor Settings
-.vscode/
+.vscode
+.idea
 
-# Config
-config/*.php
+# Environment
+.env
+
+# Database
+database/*.sqlite
 
 # Composer
 composer.lock
-vendor/
+vendor

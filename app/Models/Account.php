@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Database\Model;
+use System\Database\Model;
 
 class Account extends Model
 {

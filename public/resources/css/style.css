@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
 
+root {
+    scroll-behavior: smooth;
+}
+
+html {
+    height: 100% !important;
+    font-family: 'Sarabun', sans-serif;
+}
+
+body {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
 body::-webkit-scrollbar-track {
     background-color: #F5F5F5;
     border-radius: 10px;
@@ -15,11 +30,20 @@ body::-webkit-scrollbar-thumb {
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
-.body {
-    font-family: 'Sarabun', sans-serif;
+main {
     padding-top: 5rem;
+    padding-bottom: 1rem;
 }
 
 a {
     text-decoration: none;
+}
+
+nav {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    margin-top: auto;
 }

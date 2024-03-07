@@ -2,9 +2,12 @@
     "name": "petergamez/base-php-framework",
     "type": "project",
     "description": "Base PHP Framework",
+    "keywords": ["framework"],
     "homepage": "https://github.com/PeterGamez/Base-PHP-Framework",
     "license": "MIT",
     "require": {
         "php": "^8.1"
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
