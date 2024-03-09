@@ -1,8 +1,10 @@
 # Base PHP Framework
 
+<p align="left">
 <img src="https://img.shields.io/github/license/petergamez/base-php-framework" alt="License">
 <img src="https://img.shields.io/badge/php->= 8.1-8892BF.svg?logo=php" alt="PHP Verison">
 <img src="https://img.shields.io/badge/version-1.0.0-4AC51C.svg" alt="PHP Verison">
+</p>
 
 สารบัญ
 - [โครงสร้างโฟลเดอร์](#โครงสร้างโฟลเดอร์)
