@@ -1,6 +1,8 @@
 # Base PHP Framework
 
 <img src="https://img.shields.io/github/license/petergamez/base-php-framework" alt="License">
+<img src="https://img.shields.io/badge/php->= 8.1-8892BF.svg?logo=php" alt="PHP Verison">
+<img src="https://img.shields.io/badge/version-1.0.0-4AC51C.svg" alt="PHP Verison">
 
 สารบัญ
 - [โครงสร้างโฟลเดอร์](#โครงสร้างโฟลเดอร์)
@@ -11,26 +13,27 @@
 - [การใช้งาน Route](#การใช้งาน-route)
 - [การใช้งาน Model](#การใช้งาน-model)
 - [กาารใช้งาน Validate](#กาารใช้งาน-validate)
+- [ใบอนุญาต](#ใบอนุญาต)
 
 ## โครงสร้างโฟลเดอร์
 | โฟลเดอร์             | คำอธิบาย 
-| -                   | - 
+| ------------------- | -------------------
 | app                 | ระบบหลักของโปรเจค 
 | app/Controllers     | ส่วนประมวลผล
 | app/Core            | ส่วนหลักของระบบ
 | app/Models          | ส่วนติดต่อกับฐานข้อมูล
-| config              | ไฟล์การกำหนดค่าของโปรเจค
+| config              | การกำหนดค่าของโปรเจค
 | database            | ฐานข้อมูล
 | database/dumps      | ไฟล์สำรองข้อมูล
 | database/migrations | การสร้างฐานข้อมูล
 | database/seeds      | การเพิ่มข้อมูลเริ่มต้น
-| public              | ไฟล์สาธารณะที่สามารถเข้าถึงได้
-| public/resources    | เก็บไฟล์สาธารณะเช่น CSS, JS, Image
+| public              | โฟลเดอร์สาธารณะที่สามารถเข้าถึงได้
+| public/resources    | ไฟล์สาธารณะที่สามารถเรียกใช้ได้ผ่านคำสั่ง resources() เช่น CSS, JS, Image
 | resources           | การแสดงผลต่าง ๆ
-| resources/api       | การเแสดงผล API
-| resources/views     | การแสดงผล View
+| resources/api       | การเแสดงผล API ผ่านคำสั่ง api()
+| resources/views     | การแสดงผล View ผ่านคำสั่ง view()
 | routes              | กำหนดเส้นทางของเว็บไซต์
-| system              | ไฟล์ระบบของเฟรมเวิร์ค
+| system              | ระบบหลักของเฟรมเวิร์ค
 
 ## ข้อกำหนดของเซิร์ฟเวอร์
 - PHP 8.1 ขึ้นไป
@@ -89,6 +92,7 @@ php helper model:clearAllTrash
 - options
 - match
 - any
+- group
 - redirect
 
 ตัวอย่างการใช้งาน
