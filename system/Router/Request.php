@@ -4,6 +4,7 @@ namespace System\Router;
 
 class Request
 {
+    public $protocol;
     public $scheme;
     public $host;
     public $method;
@@ -13,6 +14,7 @@ class Request
 
     public $userAgent;
     public $ip;
+    public $ips;
     public $country;
     public $cdn;
 
@@ -22,6 +24,7 @@ class Request
 
     public function __construct()
     {
+        $this->protocol = $_SERVER['SERVER_PROTOCOL'];
         $this->scheme = $_SERVER['REQUEST_SCHEME'];
         $this->host = $_SERVER['HTTP_HOST'];
         $this->method = $_SERVER['REQUEST_METHOD'];
@@ -48,6 +51,7 @@ class Request
         $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
         $getIP = $this->getIP();
         $this->ip = $getIP['ip'];
+        $this->ips = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? null;
         $this->country = $getIP['country'];
         $this->cdn = $getIP['cdn'];
 

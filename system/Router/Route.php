@@ -6,57 +6,57 @@ class Route
 {
     public static function get(string $url, callable $callback)
     {
-        self::route(['GET'], $url, $callback);
+        return self::route(['GET'], $url, $callback);
     }
 
     public static function head(string $url, callable $callback)
     {
-        self::route(['HEAD'], $url, $callback);
+        return self::route(['HEAD'], $url, $callback);
     }
 
     public static function post(string $url, callable $callback)
     {
-        self::route(['POST'], $url, $callback);
+        return self::route(['POST'], $url, $callback);
     }
 
     public static function put(string $url, callable $callback)
     {
-        self::route(['PUT'], $url, $callback);
+        return self::route(['PUT'], $url, $callback);
     }
 
     public static function delete(string $url, callable $callback)
     {
-        self::route(['DELETE'], $url, $callback);
+        return self::route(['DELETE'], $url, $callback);
     }
 
     public static function connect(string $url, callable $callback)
     {
-        self::route(['CONNECT'], $url, $callback);
+        return self::route(['CONNECT'], $url, $callback);
     }
 
     public static function options(string $url, callable $callback)
     {
-        self::route(['OPTIONS'], $url, $callback);
+        return self::route(['OPTIONS'], $url, $callback);
     }
 
     public static function trace(string $url, callable $callback)
     {
-        self::route(['TRACE'], $url, $callback);
+        return self::route(['TRACE'], $url, $callback);
     }
 
     public static function patch(string $url, callable $callback)
     {
-        self::route(['PATCH'], $url, $callback);
+        return self::route(['PATCH'], $url, $callback);
     }
 
     public static function match(array $methods, string $url, callable $callback)
     {
-        self::route($methods, $url, $callback);
+        return self::route($methods, $url, $callback);
     }
 
     public static function any(string $url, callable $callback)
     {
-        self::route(['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'], $url, $callback);
+        return self::route(['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'], $url, $callback);
     }
 
     private static function route(array $methods, string $url, callable $callback)

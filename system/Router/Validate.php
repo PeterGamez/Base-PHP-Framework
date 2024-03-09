@@ -11,13 +11,18 @@ class Validate
         foreach ($allRules as $key => $rules) {
             $value = isset($data[$key]) ? $data[$key] : null;
             if (empty($value)) {
-                $this->error[$key][] = ['value' => 'undefined'];
+                if (strpos($rules, 'required') !== false) {
+                    $this->error[$key][] = ['name' => 'required'];
+                }
                 continue;
             }
             $rules = explode('|', $rules);
 
             $this->error[$key] = [];
             foreach ($rules as $rule) {
+                if (strpos($rule, 'required') !== false) {
+                    continue;
+                }
                 if (strpos($rule, ':') != false) {
                     [$ruleName, $ruleValue] = explode(':', $rule);
 
@@ -63,13 +68,6 @@ class Validate
         $ruleValue = explode(',', $ruleValue);
         if (in_array($value, $ruleValue)) {
             $this->error[$key][] = ['name' => 'notIn', 'value' => $ruleValue];
-        }
-    }
-
-    private function required($key, $value)
-    {
-        if (empty($value)) {
-            $this->error[$key][] = ['name' => 'required'];
         }
     }
 
