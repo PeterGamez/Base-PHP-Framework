@@ -29,7 +29,7 @@ class Module
             $command = strtolower($command);
             $methods = get_class_methods($Class);
 
-            $message = [...$message,  "  $command\n"];
+            $message = [...$message, "  $command\n"];
             foreach ($methods as $method) {
                 $args = new ReflectionMethod($Class, $method);
                 if ($method == '__construct') continue;
@@ -40,16 +40,16 @@ class Module
                     $text .= " <" . $arg->getName() . ">";
                 }
 
-                $message = [...$message,  $text];
+                $message = [...$message, $text];
 
                 $description = isset($Class::$description[$method]) ? $Class::$description[$method] : null;
                 if ($description) {
                     for ($i = 0; $i < 40 - strlen($text); $i++) {
-                        $message = [...$message,  " "];
+                        $message = [...$message, " "];
                     }
-                    $message = [...$message,  WHITE . $Class::$description[$method] . "\n"];
+                    $message = [...$message, WHITE . $Class::$description[$method] . "\n"];
                 } else {
-                    $message = [...$message,  "\n" . WHITE];
+                    $message = [...$message, "\n" . WHITE];
                 }
             }
         }

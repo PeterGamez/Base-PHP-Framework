@@ -21,7 +21,7 @@ class Find extends DataClause
                 $this->where($field, $value);
             }
         }
-        
+
         $this->query = "SELECT * FROM $this->maintable";
 
         if (config('database.trash.enabled') == true) {

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Core;
+
 class Fetch
 {
     public static function get(string $url): array
@@ -69,7 +70,7 @@ class Fetch
         return json_decode($data, true);
     }
 
-    public static function mget(array $datas)
+    public static function mget(array $datas): array
     {
         $mh = curl_multi_init();
 
@@ -112,7 +113,7 @@ class Fetch
         return $respond;
     }
 
-    public static function mpost(array $datas)
+    public static function mpost(array $datas): array
     {
         $mh = curl_multi_init();
 
