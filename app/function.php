@@ -159,7 +159,7 @@ function autoload($className): void
     }
 }
 
-function env($key, $default = null): ?string
+function env($key, $default = null): string|null
 {
     static $env = null;
 

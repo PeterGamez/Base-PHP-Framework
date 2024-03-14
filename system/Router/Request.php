@@ -63,9 +63,9 @@ class Request
         $this->cookies = (object) $_COOKIE;
     }
 
-    public function input(string $input): ?string
+    public function input(string $input): string|null
     {
-        if(isset($_SERVER['CONTENT_TYPE']) and strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+        if ($this->contentType and strpos($this->contentType, 'application/json') !== false) {
             $data = json_decode(file_get_contents('php://input'), true);
             if (isset($data[$input])) {
                 return $data[$input];

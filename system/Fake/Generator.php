@@ -27,7 +27,9 @@ class Generator
     final public function email(): string
     {
         if (self::$name) {
-            return self::$name . '@example.com';
+            $name = self::$name;
+            unset(self::$name);
+            return $name . '@example.com';
         } else {
             self::loadClass('en_US', 'Person');
             $Person = 'System\Fake\Provider\en_US\Person';
