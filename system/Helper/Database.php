@@ -33,7 +33,7 @@ class Database
             `update_by` int(5) NOT NULL,
             `isTrash` enum('0','1') NOT NULL DEFAULT '0',
             PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        );";
 
         $this->execute($sql);
     }
@@ -52,9 +52,10 @@ class Database
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $database = config('database.connections.' . config('database.default') . '.database');
         $tables = [];
         foreach ($result as $row) {
-            $tables[] = $row['Tables_in_' . config('database.database')];
+            $tables[] = $row['Tables_in_' . $database];
         }
 
         return $tables;

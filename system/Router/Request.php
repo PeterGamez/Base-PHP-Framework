@@ -6,6 +6,7 @@ class Request
 {
     public $protocol;
     public $scheme;
+    public $contentType;
     public $host;
     public $method;
     public $url;
@@ -26,6 +27,7 @@ class Request
     {
         $this->protocol = $_SERVER['SERVER_PROTOCOL'];
         $this->scheme = $_SERVER['REQUEST_SCHEME'];
+        $this->contentType = $_SERVER['CONTENT_TYPE'];
         $this->host = $_SERVER['HTTP_HOST'];
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->url = parse_url($_SERVER['USER_REQUEST_URI'], PHP_URL_PATH);
@@ -63,6 +65,12 @@ class Request
 
     public function input(string $input): ?string
     {
+        if(isset($_SERVER['CONTENT_TYPE']) and strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data[$input])) {
+                return $data[$input];
+            }
+        }
         if (self::isMethod('GET')) {
             if (isset($_GET[$input])) {
                 return $_GET[$input];
@@ -80,6 +88,9 @@ class Request
 
     public function inputs(): array
     {
+        if (isset($_SERVER['CONTENT_TYPE']) and strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+            return json_decode(file_get_contents('php://input'), true);
+        }
         if (self::isMethod('GET')) {
             return $_GET;
         } else if (self::isMethod('POST')) {

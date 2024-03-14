@@ -60,7 +60,7 @@ return new class extends Migrate
                     `update_by` int(5) NOT NULL,
                     `isTrash` enum('0','1') NOT NULL DEFAULT '0',
                     PRIMARY KEY (`id`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+            );";
         });
     }
 };
