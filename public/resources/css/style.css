@@ -1,12 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
-
 root {
     scroll-behavior: smooth;
 }
 
 html {
     height: 100% !important;
-    font-family: 'Sarabun', sans-serif;
 }
 
 body {
