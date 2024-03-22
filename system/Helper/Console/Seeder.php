@@ -2,8 +2,6 @@
 
 namespace System\Helper\Console;
 
-use System\Helper\Database;
-
 class Seeder
 {
     public static $description = [

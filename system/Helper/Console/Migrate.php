@@ -2,8 +2,6 @@
 
 namespace System\Helper\Console;
 
-use System\Helper\Database;
-
 class Migrate
 {
     public static $description = [

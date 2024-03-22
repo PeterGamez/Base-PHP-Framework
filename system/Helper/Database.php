@@ -2,10 +2,7 @@
 
 namespace System\Helper;
 
-use Exception;
-use mysqli_result;
 use PDO;
-use PDOException;
 use PDOStatement;
 use System\Database\Connector;
 

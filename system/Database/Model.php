@@ -90,7 +90,6 @@ class Model
         return self::buildStatus($sql);
     }
 
-    /* Build Query */
     private static function parseTable(): string
     {
         $table = null;

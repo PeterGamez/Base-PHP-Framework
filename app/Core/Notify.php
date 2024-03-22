@@ -13,7 +13,6 @@ class Notify
     public string $type = '';
     public string $message = '';
     public int $duration = 3000;
-
     public bool $ripple = true;
     public bool $dismissible = false;
 
