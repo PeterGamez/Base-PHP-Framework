@@ -26,7 +26,7 @@ class Fetch
         $data = curl_exec($curl);
 
         if (curl_errno($curl) or empty($data) or !preg_match('/^{.*}$/m', $data)) {
-            echo Alert::alerts('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error', 1500, 'history.back()');
+            Alert::error()->title('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้')->timer(1500)->willClose('history.back()');
             // echo curl_error($curl);
             exit;
         }
@@ -60,7 +60,7 @@ class Fetch
         $data = curl_exec($curl);
 
         if (curl_errno($curl) or empty($data) or !preg_match('/^{.*}$/m', $data)) {
-            echo Alert::alerts('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error', 1500, 'history.back()');
+            Alert::error()->title('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้')->timer(1500)->willClose('history.back()');
             // echo curl_error($curl);
             exit;
         }

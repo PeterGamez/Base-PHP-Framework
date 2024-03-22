@@ -1,7 +1,10 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 <!-- Sweetalert2 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.all.min.js" async></script>
+<script src="<?= App\Core\Alert::$cdn_js ?>" async></script>
+<!-- Notyf -->
+<link rel="stylesheet" href="<?= App\Core\Notify::$cdn_css ?>">
+<script src="<?= App\Core\Notify::$cdn_js ?>" async></script>
 <!-- Site style -->
 <link rel="stylesheet" href="<?= resources('css/style.css') ?>">
 <!-- Cookie -->
