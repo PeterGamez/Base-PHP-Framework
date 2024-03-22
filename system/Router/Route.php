@@ -109,7 +109,6 @@ class Route
         /* get only first path from url */
         $request_uri = preg_replace('/\/.*/', '', $request_uri);
 
-        // echo $prefix . ' ' . $request_uri . '<br>';
         if ($prefix == $request_uri) {
             /* remove prefix from url */
             $_SERVER['REQUEST_URI'] = preg_replace('/^\/' . $prefix . '/', '', $_SERVER['REQUEST_URI']);

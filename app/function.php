@@ -7,12 +7,12 @@ function config($key): array|string|null
     $configKeys = explode('.', $key);
     $filename = array_shift($configKeys);
 
-    // Load config file if not loaded
+    /* Load config file if not loaded */
     if (empty($loadedConfigs[$filename])) {
         $loadedConfigs[$filename] = require_once(__ROOT__ . '/config/' . $filename . '.php');
     }
 
-    // Get config value
+    /* Get config value */
     $config = $loadedConfigs[$filename];
 
     foreach ($configKeys as $nestedKey) {

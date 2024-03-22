@@ -14,13 +14,12 @@ use System\Database\Query\BuildClause;
 class Model
 {
     use BuildClause;
-    // Get manager id
+
     public static function getManager(): string
     {
         return $_SESSION['account']['id'];
     }
 
-    // Main function
     public static function create(array $newData): Create
     {
         $table = self::parseTable();
@@ -91,17 +90,17 @@ class Model
         return self::buildStatus($sql);
     }
 
-    // Build Query
+    /* Build Query */
     private static function parseTable(): string
     {
         $table = null;
-        if (isset(get_called_class()::$table)) {
+        if (isset (get_called_class()::$table)) {
             $table = get_called_class()::$table;
         } else {
-            $table = get_called_class(); // get class name
-            $table = lcfirst($table); // change first character to lowercase
-            $table = preg_replace('/(?<!^)[A-Z]/', '_$0', $table); // add underscore before uppercase
-            $table = strtolower($table); // change uppercase to lowercase
+            $table = get_called_class();
+            $table = lcfirst($table);
+            $table = preg_replace('/(?<!^)[A-Z]/', '_$0', $table); /* add underscore before uppercase */
+            $table = strtolower($table);
         }
         return $table;
     }

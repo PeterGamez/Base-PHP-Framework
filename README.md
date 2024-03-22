@@ -154,12 +154,12 @@ Account::delete()
     ->where('id', 1)
     ->run();
 
-// กรณีใช้งานระบบ Trash
+/* กรณีใช้งานระบบ Trash */
 Account::restore()
     ->where('id', 1)
     ->run();
 
-// กรณีใช้งานระบบ Trash
+/* กรณีใช้งานระบบ Trash */
 Account::forceDelete()
     ->where('id', 1)
     ->run();

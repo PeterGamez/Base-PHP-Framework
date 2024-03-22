@@ -122,7 +122,7 @@ class Alert
             $this->willClose ? "willClose: ()=>{ $this->willClose}" : null
         ]));
         $script = "<script>Swal.fire({" . $data . "})</script>";
-        // check document has head tag
+        /* check document has head tag */
         if (empty (ob_get_contents())) {
             echo "<!DOCTYPE html><html><head><script src='" . self::$cdn_js . "'></script></head><body>$script</body></html>";
         } else {

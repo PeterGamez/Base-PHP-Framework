@@ -30,6 +30,6 @@ return [
 
     "trash" => [
         "enabled" => false,
-        "day" => 30 // delete trash after 30 days
+        "day" => 30 /* delete trash after 30 days */
     ]
 ];

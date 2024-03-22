@@ -114,7 +114,6 @@ class Generator
 
     private static function loadClass($lang, $class): void
     {
-        // Check File
         if (!file_exists(__DIR__ . "/Provider/$lang/$class.php")) {
             throw new Exception("Language $lang not supported");
         }
