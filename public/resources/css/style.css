@@ -10,6 +10,7 @@ body {
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
+    font-family: 'Nunito', sans-serif
 }
 
 body::-webkit-scrollbar-track {

@@ -7,8 +7,8 @@ class Notify
     /**
      * https://carlosroso.com/notyf/
      */
-    public static string $cdn_css = 'https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.css';
-    public static string $cdn_js = 'https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.js';
+    public static string $cdn_css = '/resources/css/notyf.min.css';
+    public static string $cdn_js = '/resources/js/notyf.min.js';
 
     public string $type = '';
     public string $message = '';
@@ -36,6 +36,27 @@ class Notify
         }
         return $notify;
     }
+
+    public static function warning(string $message = null)
+    {
+        $notify = new self();
+        $notify->type = 'warning';
+        if ($message) {
+            $notify->message = $message;
+        }
+        return $notify;
+    }
+
+    public static function info(string $message = null)
+    {
+        $notify = new self();
+        $notify->type = 'info';
+        if ($message) {
+            $notify->message = $message;
+        }
+        return $notify;
+    }
+
 
     public function message(string $message)
     {
@@ -70,9 +91,10 @@ class Notify
     {
         $ripple = $this->ripple ? 'true' : 'false';
         $dismissible = $this->dismissible ? 'true' : 'false';
-        $script = "<script>new Notyf({duration:$this->duration,position:{x:'right',y:'top'},ripple:$ripple,dismissible:$dismissible}).$this->type('$this->message')</script>";
+
+        $script = "<script>new Notyf({duration:$this->duration,ripple:$ripple,dismissible:$dismissible}).open({type:'$this->type',message:'$this->message'})</script>";
         if (empty (ob_get_contents())) {
-            echo "<!DOCTYPE html><html><head><style>body{font-family:'Nunito',sans-serif}</style><link rel='stylesheet' href='" . self::$cdn_css . "'><script src='" . self::$cdn_js . "'></script></head><body>$script</body></html>";
+            echo "<!DOCTYPE html><html><head><link rel='stylesheet' href='" . self::$cdn_css . "'><script src='" . self::$cdn_js . "'></script></head><body>$script</body></html>";
         } else {
             echo $script;
         }
