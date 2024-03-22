@@ -10,9 +10,7 @@ Route::get('/', function (Request $request) {
     Respond::text('Hello, World!');
 });
 
-Route::get('/request/*', function (Request $request, string $patten = null) {
-    Respond::json($request);
-});
+Route::get('/home', [View::class, 'home']);
 
 Route::post('/create', function (Request $request) {
     $validate = $request->validate([
@@ -29,6 +27,14 @@ Route::post('/create', function (Request $request) {
     }
 });
 
-Route::get('/home', [View::class, 'home']);
+Route::group('admin', function () {
+    Route::get('/', function (Request $request) {
+        Respond::text('Admin Page');
+    });
+});
+
+Route::get('/request/*', function (Request $request, string $patten = null) {
+    Respond::json($request);
+});
 
 Respond::status(404)::text('404 Not Found');
