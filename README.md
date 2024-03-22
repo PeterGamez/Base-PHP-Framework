@@ -32,7 +32,7 @@
 | public              | โฟลเดอร์สาธารณะที่สามารถเข้าถึงได้
 | public/resources    | ไฟล์สาธารณะที่สามารถเรียกใช้ได้ผ่านคำสั่ง resources() เช่น CSS, JS, Image
 | resources           | การแสดงผลต่าง ๆ
-| resources/api       | การเแสดงผล API ผ่านคำสั่ง api()
+| resources/api       | การแสดงผล API ผ่านคำสั่ง api()
 | resources/views     | การแสดงผล View ผ่านคำสั่ง view()
 | routes              | กำหนดเส้นทางของเว็บไซต์
 | system              | ระบบหลักของเฟรมเวิร์ค
