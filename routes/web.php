@@ -27,7 +27,7 @@ Route::post('/create', function (Request $request) {
     }
 });
 
-Route::group('admin', function () {
+Route::group('admin', function (Request $request) {
     Route::get('/', function (Request $request) {
         Respond::text('Admin Page');
     });

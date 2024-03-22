@@ -10,7 +10,7 @@ class BaseGroup
     public function __destruct()
     {
         if (is_callable($this->next)) {
-            call_user_func($this->next);
+            call_user_func($this->next, $this->request);
         }
     }
 }

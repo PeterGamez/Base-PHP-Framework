@@ -113,7 +113,7 @@ Route::get('/request/*', function (Request $request, string $patten = null) {
     Respond::json($request);
 });
 
-Route::group('admin', function () {
+Route::group('admin', function (Request $request) {
     Route::get('/', function (Request $request) {
         Respond::text('Admin');
     });
