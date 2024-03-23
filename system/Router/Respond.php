@@ -26,5 +26,4 @@ class Respond
     {
         header('Location: ' . $url);
     }
-
 }

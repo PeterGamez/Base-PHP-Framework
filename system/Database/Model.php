@@ -93,7 +93,7 @@ class Model
     private static function parseTable(): string
     {
         $table = null;
-        if (isset (get_called_class()::$table)) {
+        if (isset(get_called_class()::$table)) {
             $table = get_called_class()::$table;
         } else {
             $table = get_called_class();

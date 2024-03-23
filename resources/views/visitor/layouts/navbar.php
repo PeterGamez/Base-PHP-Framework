@@ -17,8 +17,8 @@
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0 justify-content-end">
                 <?php
-                if ($_SESSION['login'] == true) {
-                    ?>
+                if ($_SESSION['login'] == true) :
+                ?>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?= $_SESSION['account']['avatar'] ?>" alt=" <?= $_SESSION['account']['username']; ?>" class="rounded" width="30px" height="30px">
@@ -29,14 +29,14 @@
                             <a class="dropdown-item" href="#">ออกจากระบบ</a>
                         </div>
                     </li>
-                    <?php
-                } else {
-                    ?>
+                <?php
+                else :
+                ?>
                     <li class="nav-item d-flex justify-content-right">
                         <a class="nav-link" href="#">Login</a>
                     </li>
-                    <?php
-                }
+                <?php
+                endif;
                 ?>
             </ul>
         </div>
