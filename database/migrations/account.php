@@ -7,9 +7,9 @@ use System\Helper\Schema;
 return new class extends Migrate {
     public function up(): void
     {
-        Schema::dropIfExists('account');
+        Schema::dropIfExists('Account');
 
-        Schema::create('account', function () {
+        Schema::create('Account', function () {
             return "CREATE TABLE `account` (
                     `id` int(5) NOT NULL AUTO_INCREMENT,
                     `username` varchar(50) NOT NULL,
@@ -25,7 +25,7 @@ return new class extends Migrate {
                 );";
         });
 
-        Factory::create('account', function () {
+        Factory::create('Account', function () {
             return [
                 'username' => 'system',
                 'password' => password_hash('system', PASSWORD_DEFAULT),

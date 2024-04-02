@@ -3,6 +3,7 @@
 namespace System\Helper;
 
 use System\Fake\Generator;
+use System\Helper\Console\Model;
 
 class Factory
 {
@@ -16,6 +17,8 @@ class Factory
     final public static function create(string $table, callable $callback): void
     {
         $value = $callback();
+
+        $table = Model::parse($table);
 
         $sql = "INSERT INTO $table ";
 

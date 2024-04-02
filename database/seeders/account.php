@@ -8,7 +8,7 @@ return new class extends Seeder {
     {
         Factory::count(5);
 
-        Factory::create('account', function () {
+        Factory::create('Account', function () {
             return [
                 'username' => Factory::fake()->username(),
                 'email' => Factory::fake()->email(),
