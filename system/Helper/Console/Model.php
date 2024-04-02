@@ -75,7 +75,7 @@ EOF;
         echo "Trash cleared successfully.\n";
     }
 
-    private static function parse($table): string
+    final public static function parse($table): string
     {
         $model = lcfirst($table); /* change first character to lowercase */
         $model = preg_replace('/(?<!^)[A-Z]/', '_$0', $model); /* add underscore before uppercase */

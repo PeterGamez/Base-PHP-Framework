@@ -43,6 +43,9 @@ class Migrate
         if (file_exists(__ROOT__ . "/database/migrations/$model.php")) {
             die("Migrate $model already exists.\n");
         }
+
+        $table = Model::parse($model);
+
         $content = <<<EOF
 <?php
 
@@ -56,7 +59,7 @@ return new class extends Migrate
         Schema::dropIfExists('$model');
 
         Schema::create('$model', function () {
-            return "CREATE TABLE `$model` (
+            return "CREATE TABLE `$table` (
                     `id` int(5) NOT NULL AUTO_INCREMENT,
                     `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
                     `create_by` int(5) NOT NULL,
