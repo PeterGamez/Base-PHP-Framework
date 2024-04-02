@@ -15,30 +15,37 @@ class Create extends DataClause
         $this->maintable = $table;
         $this->manager = $manager;
 
-        if (isset($newData['create_at'])) throw new Exception("Column 'create_at' is not allowed to create.");
-        if (isset($newData['create_by'])) throw new Exception("Column 'create_by' is not allowed to create.");
-        if (isset($newData['update_at'])) throw new Exception("Column 'update_at' is not allowed to create.");
-        if (isset($newData['update_by'])) throw new Exception("Column 'update_by' is not allowed to create.");
-        if (isset($newData['isTrash'])) throw new Exception("Column 'isTrash' is not allowed to create.");
+        if (isset($newData['create_at'])) {
+            throw new Exception("Column 'create_at' is not allowed to create.");
+        }
+        if (isset($newData['create_by'])) {
+            throw new Exception("Column 'create_by' is not allowed to create.");
+        }
+        if (isset($newData['update_at'])) {
+            throw new Exception("Column 'update_at' is not allowed to create.");
+        }
+        if (isset($newData['update_by'])) {
+            throw new Exception("Column 'update_by' is not allowed to create.");
+        }
+        if (isset($newData['isTrash'])) {
+            throw new Exception("Column 'isTrash' is not allowed to create.");
+        }
 
+        if (count($newData) == 0) {
+            throw new Exception("Data is empty.");
+        }
         $this->create = $newData;
     }
 
     protected function query(): void
     {
-        $newData['create_by'] = $this->manager;
-        $newData['update_by'] = $this->manager;
-
         $this->query = "INSERT INTO " . $this->maintable;
-        $this->bindParams = array_values($newData);
+        $this->bindParams = array_values($this->create);
 
-        $query = [];
+        $columns = array_keys($this->create);
 
-        foreach ($newData as $field => $value) {
-            $query[] = $field;
-        }
-
-        $this->query .= " (" . implode(", ", $query) . ") VALUES (" . implode(", ", array_fill(0, count($query), "?")) . ")";
+        $manager = $this->manager;
+        $this->query .= " (" . implode(", ", $columns) . ", create_by, update_by) VALUES (" . implode(", ", array_fill(0, count($columns), "?")) . ", " . $manager . ", " . $manager . ")";
     }
 
     public function run(): int

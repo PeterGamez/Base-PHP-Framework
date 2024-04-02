@@ -19,12 +19,18 @@ if (!isset($argv[1])) {
     return Module::list();
 }
 
-if (!strpos($argv[1], ':')) die("Command not found.\n");
+if (!strpos($argv[1], ':')) {
+    die("Command not found.\n");
+}
 
 [$class, $method] = explode(':', $argv[1]);
 
 $command = "System\\Helper\\Console\\$class";
 
-if (!class_exists($command)) die("Command not found.\n");
-if (!method_exists($command, $method)) die("Method not found.\n");
+if (!class_exists($command)) {
+    die("Command not found.\n");
+}
+if (!method_exists($command, $method)) {
+    die("Method not found.\n");
+}
 $command::$method(...array_slice($argv, 2));

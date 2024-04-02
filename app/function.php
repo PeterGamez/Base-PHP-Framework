@@ -9,7 +9,7 @@ function config($key): array|string|null
 
     /* Load config file if not loaded */
     if (empty($loadedConfigs[$filename])) {
-        $loadedConfigs[$filename] = require_once(__ROOT__ . '/config/' . $filename . '.php');
+        $loadedConfigs[$filename] = require_once __ROOT__ . '/config/' . $filename . '.php';
     }
 
     /* Get config value */
@@ -47,13 +47,18 @@ function resources($key, $url = true): void
 function url($path = '', $ext = ''): string
 {
     $protocol = $_SERVER['REQUEST_SCHEME'] . '://';
-    if (!$path) $path = parse_url($_SERVER['USER_REQUEST_URI'], PHP_URL_PATH);
-    else {
+    if (!$path) {
+        $path = parse_url($_SERVER['USER_REQUEST_URI'], PHP_URL_PATH);
+    } else {
         $path = str_replace('.', '/', $path);
-        if ($path[0] != '/') $path = '/' . $path;
+        if ($path[0] != '/') {
+            $path = '/' . $path;
+        }
     }
     $url = $protocol . $_SERVER['HTTP_HOST'] . $path;
-    if ($ext) $url .= '.' . $ext;
+    if ($ext) {
+        $url .= '.' . $ext;
+    }
     return $url;
 }
 
@@ -64,20 +69,28 @@ function sub_url($sub, $path = '', $ext = ''): string
 
 function admin_url($path = null, $ext = ''): string
 {
-    if (empty($path)) return url('/admin');
-    return url('/admin/' . $path, $ext);
+    if (empty($path)) {
+        return url('/admin');
+    } else {
+        return url('/admin/' . $path, $ext);
+    }
 }
 
 function member_url($path = null, $ext = ''): string
 {
-    if (empty($path)) return url('/member');
-    return url('/member/' . $path, $ext);
+    if (empty($path)) {
+        return url('/member');
+    } else {
+        return url('/member/' . $path, $ext);
+    }
 }
 
 function url_back(): string
 {
-    if (isset($_SERVER['HTTP_REFERER'])) return $_SERVER['HTTP_REFERER'];
-    else return url('/');
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        return $_SERVER['HTTP_REFERER'];
+    }
+    return url('/');
 }
 
 function redirect($path): void
@@ -102,7 +115,7 @@ function views($filename, $data = null): void
             ob_start(function ($buffer) {
                 /**
                  * remove comments
-                 * remove whitespaces 
+                 * remove whitespaces
                  */
                 $search = [
                     '/<!--(.|\s)*?-->/',

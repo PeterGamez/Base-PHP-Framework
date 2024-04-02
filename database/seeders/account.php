@@ -3,8 +3,7 @@
 use System\Helper\Console\Seeder;
 use System\Helper\Factory;
 
-return new class extends Seeder
-{
+return new class extends Seeder {
     public function up(): void
     {
         Factory::count(5);

@@ -27,11 +27,21 @@ class Update extends DataClause
 
     final public function set(string $column, string $value): self
     {
-        if ($column === 'isTrash') throw new Exception("Column 'isTrash' is not allowed to update.");
-        if ($column === 'create_at') throw new Exception("Column 'create_at' is not allowed to update.");
-        if ($column === 'create_by') throw new Exception("Column 'create_by' is not allowed to update.");
-        if ($column === 'update_at') throw new Exception("Column 'update_at' is not allowed to update.");
-        if ($column === 'update_by') throw new Exception("Column 'update_by' is not allowed to update.");
+        if ($column === 'isTrash') {
+            throw new Exception("Column 'isTrash' is not allowed to update.");
+        }
+        if ($column === 'create_at') {
+            throw new Exception("Column 'create_at' is not allowed to update.");
+        }
+        if ($column === 'create_by') {
+            throw new Exception("Column 'create_by' is not allowed to update.");
+        }
+        if ($column === 'update_at') {
+            throw new Exception("Column 'update_at' is not allowed to update.");
+        }
+        if ($column === 'update_by') {
+            throw new Exception("Column 'update_by' is not allowed to update.");
+        }
 
         $this->set[] = "$column = ?";
         $this->bindParams[] = $value;

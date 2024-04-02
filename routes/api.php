@@ -17,7 +17,7 @@ Route::get('/', function (Request $request) {
     Respond::json(['code' => 200, 'message' => 'Welcome to the API']);
 });
 
-Route::group('v1', function () {
+Route::group('v1', function (Request $request) {
     Route::get('/', function (Request $request) {
         api('v1.index');
     });

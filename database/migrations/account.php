@@ -4,8 +4,7 @@ use System\Helper\Console\Migrate;
 use System\Helper\Factory;
 use System\Helper\Schema;
 
-return new class extends Migrate
-{
+return new class extends Migrate {
     public function up(): void
     {
         Schema::dropIfExists('account');

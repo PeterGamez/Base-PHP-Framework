@@ -30,6 +30,8 @@ class DataClause
         $called = get_called_class();
         $called::query();
         echo $this->query;
+        echo '<br> Params: ';
+        echo implode(', ', $this->bindParams);
         exit;
     }
 }

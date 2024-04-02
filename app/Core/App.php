@@ -4,7 +4,7 @@ namespace App\Core;
 
 class App
 {
-    public static function RandomText($length): string
+    public static function RandomText(int $length): string
     {
         $character = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $characterLength = strlen($character);

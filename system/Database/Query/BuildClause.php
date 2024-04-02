@@ -51,8 +51,11 @@ trait BuildClause
         $stmt->execute();
 
         $count = $stmt->rowCount();
-        if ($count > 0) return true;
-        return false;
+        if ($count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     protected static function buildDelete(string $sql, array $bindParams): bool
@@ -64,8 +67,11 @@ trait BuildClause
         $stmt->execute();
 
         $count = $stmt->rowCount();
-        if ($count > 0) return true;
-        return false;
+        if ($count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     protected static function buildStatus(string $sql): ?array
@@ -80,10 +86,15 @@ trait BuildClause
             $type = null;
 
             $params_type = gettype($params[$i]);
-            if ($params_type == 'integer') $type = PDO::PARAM_INT;
-            if ($params_type == 'string') $type = PDO::PARAM_STR;
-            if ($params_type == 'NULL') $type = PDO::PARAM_NULL;
-            if ($params_type == 'boolean') $type = PDO::PARAM_BOOL;
+            if ($params_type == 'integer') {
+                $type = PDO::PARAM_INT;
+            } elseif ($params_type == 'string') {
+                $type = PDO::PARAM_STR;
+            } elseif ($params_type == 'NULL') {
+                $type = PDO::PARAM_NULL;
+            } elseif ($params_type == 'boolean') {
+                $type = PDO::PARAM_BOOL;
+            }
 
             $stmt->bindParam($count, $params[$i], $type);
         }

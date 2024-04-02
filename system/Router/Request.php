@@ -75,7 +75,7 @@ class Request
             if (isset($_GET[$input])) {
                 return $_GET[$input];
             }
-        } else if (self::isMethod('POST')) {
+        } elseif (self::isMethod('POST')) {
             if (isset($_POST[$input])) {
                 return $_POST[$input];
             }
@@ -93,7 +93,7 @@ class Request
         }
         if (self::isMethod('GET')) {
             return $_GET;
-        } else if (self::isMethod('POST')) {
+        } elseif (self::isMethod('POST')) {
             return $_POST;
         }
         return $_REQUEST;
@@ -110,7 +110,7 @@ class Request
         return new Validate($this->inputs(), $rules);
     }
 
-    private function getIP(): array
+    public function getIP(): array
     {
         $ip = 'Unknown';
         $cdn = null;
@@ -119,9 +119,9 @@ class Request
             $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
             $cdn = $_SERVER['HTTP_CDN_LOOP'];
             $country = $_SERVER['HTTP_CF_IPCOUNTRY'];
-        } else if (isset($_SERVER['HTTP_X_REAL_IP'])) {
+        } elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
             $ip = $_SERVER['HTTP_X_REAL_IP'];
-        } else if (isset($_SERVER['REMOTE_ADDR'])) {
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         return ['ip' => $ip, 'country' => $country, 'cdn' => $cdn];

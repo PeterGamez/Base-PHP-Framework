@@ -20,7 +20,9 @@ class Count extends DataClause
     final public function groupBy(string $columns, string $order = 'ASC'): self
     {
         $order = strtoupper($order);
-        if ($order != 'ASC' && $order != 'DESC') throw new Exception("Order must be ASC or DESC.");
+        if ($order != 'ASC' && $order != 'DESC') {
+            throw new Exception("Order must be ASC or DESC.");
+        }
         $this->group[] = "$columns $order";
         return $this;
     }
@@ -40,7 +42,7 @@ class Count extends DataClause
                     $this->query .= " AND " . $this->whereTrash;
                 } else {
                     if ($this->whereTrash === "") {
-                    } else if ($this->jointable) {
+                    } elseif ($this->jointable) {
                         $this->query .= " AND " . $this->maintable . ".isTrash = '0'";
                     } else {
                         $this->query .= " AND isTrash = '0'";
@@ -53,7 +55,7 @@ class Count extends DataClause
                     $this->query .= " WHERE " . $this->whereTrash;
                 } else {
                     if ($this->whereTrash === "") {
-                    } else if ($this->jointable) {
+                    } elseif ($this->jointable) {
                         $this->query .= " WHERE " . $this->maintable . ".isTrash = '0'";
                     } else {
                         $this->query .= " WHERE isTrash = '0'";

@@ -32,7 +32,9 @@ class Module
             $message = [...$message, "  $command\n"];
             foreach ($methods as $method) {
                 $args = new ReflectionMethod($Class, $method);
-                if ($method == '__construct') continue;
+                if ($method == '__construct') {
+                    continue;
+                }
 
                 $text = GREEN . "    $command:$method";
 

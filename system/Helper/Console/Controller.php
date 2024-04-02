@@ -10,9 +10,13 @@ class Controller
 
     final public static function make(string $controller = null): void
     {
-        if (empty($controller)) die("Please enter controller name.");
+        if (empty($controller)) {
+            die("Please enter controller name.");
+        }
 
-        if (file_exists(__ROOT__ . "/app/Controllers/$controller.php")) die("Controller $controller already exists.\n");
+        if (file_exists(__ROOT__ . "/app/Controllers/$controller.php")) {
+            die("Controller $controller already exists.\n");
+        }
         $content = <<<EOF
 <?php
 

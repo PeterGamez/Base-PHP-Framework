@@ -116,14 +116,16 @@ class Alert
         $data = implode(',', array_filter([
             $this->title ? "title:'$this->title'" : null,
             $this->html ? "html:'$this->html'" : null,
+            $this->text ? "text:'$this->text'" : null,
             $this->icon ? "icon:'$this->icon'" : null,
+            $this->footer ? "footer:'$this->footer'" : null,
             $this->timer ? "timer: $this->timer" : null,
             $this->timer ? "timerProgressBar: true" : null,
             $this->willClose ? "willClose: ()=>{ $this->willClose}" : null
         ]));
         $script = "<script>Swal.fire({" . $data . "})</script>";
         /* check document has head tag */
-        if (empty (ob_get_contents())) {
+        if (empty(ob_get_contents())) {
             echo "<!DOCTYPE html><html><head><script src='" . self::$cdn_js . "'></script></head><body>$script</body></html>";
         } else {
             echo $script;

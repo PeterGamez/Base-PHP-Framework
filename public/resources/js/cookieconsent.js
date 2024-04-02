@@ -35,8 +35,8 @@ CookieConsent.run({
     language: {
         default: "th",
         translations: {
-            th: "./resources/json/cookieconsent-th.json",
-            en: "./resources/json/cookieconsent-en.json"
+            th: "/resources/json/cookieconsent-th.json",
+            en: "/resources/json/cookieconsent-en.json"
         },
         autoDetect: "browser"
     }

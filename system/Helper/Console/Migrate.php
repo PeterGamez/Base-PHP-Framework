@@ -12,7 +12,9 @@ class Migrate
     public function __construct()
     {
         $class = get_called_class();
-        if ($class === 'Migrate') die("Can't run Migrate class directly.\n");
+        if ($class === 'Migrate') {
+            die("Can't run Migrate class directly.\n");
+        }
 
         $class::up();
     }
@@ -34,9 +36,13 @@ class Migrate
 
     public static function make(string $model = null): void
     {
-        if (empty($model)) die("Please enter migrate name.");
+        if (empty($model)) {
+            die("Please enter migrate name.");
+        }
 
-        if (file_exists(__ROOT__ . "/database/migrations/$model.php")) die("Migrate $model already exists.\n");
+        if (file_exists(__ROOT__ . "/database/migrations/$model.php")) {
+            die("Migrate $model already exists.\n");
+        }
         $content = <<<EOF
 <?php
 

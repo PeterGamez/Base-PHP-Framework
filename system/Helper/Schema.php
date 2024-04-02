@@ -10,7 +10,9 @@ class Schema
 
         $stmt = $db->execute("SHOW TABLES LIKE '$table'");
         $tableExists = $stmt->rowCount() > 0;
-        if ($tableExists) die("Table $table already exists.\n");
+        if ($tableExists) {
+            die("Table $table already exists.\n");
+        }
 
         $sql = $callback();
 

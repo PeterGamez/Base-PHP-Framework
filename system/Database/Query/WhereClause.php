@@ -6,14 +6,14 @@ use Exception;
 
 trait WhereClause
 {
-    final public function where(string $column, string|array $value): self
+    final public function where(string $column, string|array $value, string $operator = '='): self
     {
         if (is_array($value)) {
             $placeholders = implode(', ', array_fill(0, count($value), '?'));
             $this->whereConditions[] = "$column IN ($placeholders)";
             $this->bindParams = [...$this->bindParams, ...$value];
         } else {
-            $this->whereConditions[] = "$column = ?";
+            $this->whereConditions[] = "$column $operator ?";
             $this->bindParams[] = $value;
         }
         return $this;
@@ -83,14 +83,18 @@ trait WhereClause
 
     final public function withTrash(): self
     {
-        if ($this->isTrash === false) throw new Exception("Trash is disabled.\n");
+        if ($this->isTrash === false) {
+            throw new Exception("Trash is disabled.\n");
+        }
         $this->whereTrash = "";
         return $this;
     }
 
     final public function onlyTrash(): self
     {
-        if ($this->isTrash === false) throw new Exception("Trash is disabled.\n");
+        if ($this->isTrash === false) {
+            throw new Exception("Trash is disabled.\n");
+        }
         if ($this->jointable) {
             $this->whereTrash = $this->maintable . ".isTrash = '1'";
         } else {

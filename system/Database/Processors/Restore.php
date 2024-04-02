@@ -16,7 +16,9 @@ class Restore extends DataClause
         $this->maintable = $table;
         $this->manager = $manager;
 
-        if (config('database.trash.enabled') === false) throw new Exception("Trash is disabled.");
+        if (config('database.trash.enabled') === false) {
+            throw new Exception("Trash is disabled.");
+        }
     }
 
     protected function query(): void

@@ -15,9 +15,22 @@ class Model
 {
     use BuildClause;
 
-    public static function getManager(): string
+    public static $manager_id = null;
+
+    protected static function getManager(): string
     {
-        return $_SESSION['account']['id'];
+        if (self::$manager_id) {
+            $manager_id = self::$manager_id;
+            self::$manager_id = null;
+            return $manager_id;
+        } else {
+            return $_SESSION['account']['id'] ?? 1;
+        }
+    }
+
+    protected static function setManager($manager_id): void
+    {
+        self::$manager_id = $manager_id;
     }
 
     public static function create(array $newData): Create

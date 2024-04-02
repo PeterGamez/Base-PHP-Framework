@@ -14,11 +14,15 @@ class Model
 
     final public static function make(string $model = null): void
     {
-        if (empty($model)) die("Please enter table name.");
+        if (empty($model)) {
+            die("Please enter table name.");
+        }
 
         $table = self::parse($model);
 
-        if (file_exists(__ROOT__ . "/app/Models/$model.php")) die("Model $model already exists.\n");
+        if (file_exists(__ROOT__ . "/app/Models/$model.php")) {
+            die("Model $model already exists.\n");
+        }
         $content = <<<EOF
 <?php
 
@@ -39,9 +43,13 @@ EOF;
 
     final public static function clearTrash(string $model = null): void
     {
-        if (config('database.trash.enabled') == false) die("Trash is disabled.\n");
+        if (config('database.trash.enabled') == false) {
+            die("Trash is disabled.\n");
+        }
 
-        if (empty($model)) die("Please enter table name.");
+        if (empty($model)) {
+            die("Please enter table name.");
+        }
 
         $table = self::parse($model);
 
@@ -53,7 +61,9 @@ EOF;
 
     final public static function clearAllTrash(): void
     {
-        if (config('database.trash.enabled') == false) die("Trash is disabled.\n");
+        if (config('database.trash.enabled') == false) {
+            die("Trash is disabled.\n");
+        }
 
         $db = new Database();
         $tables = $db->getAllTables();

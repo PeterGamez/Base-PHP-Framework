@@ -92,7 +92,7 @@ class Notify
         $dismissible = $this->dismissible ? 'true' : 'false';
 
         $script = "<script>new Notyf({duration:$this->duration,ripple:$ripple,dismissible:$dismissible}).open({type:'$this->type',message:'$this->message'})</script>";
-        if (empty (ob_get_contents())) {
+        if (empty(ob_get_contents())) {
             echo "<!DOCTYPE html><html><head><link rel='stylesheet' href='" . self::$cdn_css . "'><script src='" . self::$cdn_js . "'></script></head><body>$script</body></html>";
         } else {
             echo $script;
