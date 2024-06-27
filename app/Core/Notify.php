@@ -86,7 +86,7 @@ class Notify
         $this->show();
     }
 
-    public function show()
+    private function show()
     {
         $ripple = $this->ripple ? 'true' : 'false';
         $dismissible = $this->dismissible ? 'true' : 'false';
