@@ -40,7 +40,7 @@ class Find extends DataClause
     final public function groupBy(string $columns, string $order = 'ASC'): self
     {
         $order = strtoupper($order);
-        if ($order != 'ASC' && $order != 'DESC') {
+        if ($order != 'ASC' AND $order != 'DESC') {
             throw new Exception("Order must be ASC or DESC.");
         }
         $this->group[] = "$columns $order";
@@ -56,7 +56,7 @@ class Find extends DataClause
     final public function orderBy(string $columns, string $order = 'ASC'): self
     {
         $order = strtoupper($order);
-        if ($order != 'ASC' && $order != 'DESC') {
+        if ($order != 'ASC' AND $order != 'DESC') {
             throw new Exception("Order must be ASC or DESC.");
         }
         $this->order[] = "$columns $order";
