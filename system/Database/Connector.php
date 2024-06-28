@@ -37,7 +37,7 @@ class Connector
         return $conn;
     }
 
-    private static function createPdoConnection($dsn, $username, $password, $options)
+    private static function createPdoConnection($dsn, $username, $password, $options): PDO
     {
         try {
             $conn = new PDO($dsn, $username, $password, $options);
