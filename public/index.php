@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Root path of the project
  */

@@ -1,18 +1,20 @@
 <?php
 
+use System\Database\Connector;
+
 require_once __ROOT__ . '/app/function.php';
-require_once __ROOT__ . '/database/autoload.php';
 
-loaddir(__ROOT__ . '/app/Class');
-loaddir(__ROOT__ . '/app/Controllers');
-loaddir(__ROOT__ . '/app/Models');
+$_SERVER['USER_REQUEST_URI'] = $_SERVER['REQUEST_URI'];
+$_SERVER['USER_QUERY_STRING'] = $_SERVER['QUERY_STRING'];
 
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$agent_url = $_SERVER['REQUEST_URI'];
-$agent_path = parse_url($agent_url, PHP_URL_PATH);
-$agent_request = explode('/', $agent_path);
+date_default_timezone_set("Asia/Bangkok");
 
-if (str_starts_with($agent_path, '/api')) {
+spl_autoload_register('autoload');
+
+$conn = Connector::connect();
+
+if (str_starts_with($_SERVER['REQUEST_URI'], '/api')) {
+    $_SERVER['REQUEST_URI'] = preg_replace('/^\/api/', '', $_SERVER['REQUEST_URI']);
     require_once __ROOT__ . '/routes/api.php';
 } else {
     require_once __ROOT__ . '/routes/web.php';
