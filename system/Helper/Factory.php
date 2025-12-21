@@ -7,7 +7,7 @@ use System\Helper\Console\Model;
 
 class Factory
 {
-    static $count = 1;
+    public static $count = 1;
 
     final public static function count(int $count): void
     {

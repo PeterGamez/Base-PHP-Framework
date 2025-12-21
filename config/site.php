@@ -21,6 +21,7 @@ return [
      */
 
     "minify" => [
-        "html" => false
+        "html" => false,
+        "resource" => false
     ]
 ];

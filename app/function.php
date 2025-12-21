@@ -108,28 +108,48 @@ function views($filename, $data = null): void
     }
 
     $filename = str_replace('.', '/', $filename);
-    $viewPath = __ROOT__ . '/resources/views/' . $filename . '.php';
+    $viewPath = __ROOT__ . '/views/' . $filename . '.php';
 
     if (file_exists($viewPath)) {
-        if (config('site.minify.html') == true) {
+        if (config('site.minify.html') == true || config('site.minify.resource') == true) {
             ob_start(function ($buffer) {
-                /**
-                 * remove comments
-                 * remove whitespaces
-                 */
-                $search = [
-                    '/<!--(.|\s)*?-->/',
-                    '/\s{2,}/',
-                ];
+                $minifyHtml = config('site.minify.html') == true;
+                $minifyResource = config('site.minify.resource') == true;
 
-                $buffer = preg_replace($search, '', $buffer);
+                if ($minifyHtml) {
+                    // Remove HTML comments (except IE conditionals)
+                    $buffer = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $buffer);
+
+                    // Remove unnecessary whitespace while preserving single spaces
+                    $buffer = preg_replace([
+                        '/>\s+</',          // Between tags
+                        '/\s{2,}/',         // Multiple whitespaces
+                        '/^\s+|\s+$/m'      // Leading/trailing whitespace per line
+                    ], [
+                        '><',
+                        ' ',
+                        ''
+                    ], $buffer);
+                }
+
+                if ($minifyResource) {
+                    // Optimize CSS and JS file references to use minified versions
+                    $buffer = preg_replace([
+                        '/<link\s+([^>]*?)href=["\']([^"\']+?)(?<!\.min)\.css["\']/i',      // CSS files
+                        '/<script\s+([^>]*?)src=["\']([^"\']+?)(?<!\.min)\.js["\']/i'       // JS files
+                    ], [
+                        '<link $1href="$2.min.css"',
+                        '<script $1src="$2.min.js"'
+                    ], $buffer);
+                }
+
                 return $buffer;
             });
         }
 
         include $viewPath;
 
-        if (config('site.minify.html') == true) {
+        if (config('site.minify.html') == true || config('site.minify.resource') == true) {
             ob_end_flush();
         }
     }
@@ -166,6 +186,17 @@ function api($filename, $data = null): void
 function autoload($className): void
 {
     $className = str_replace('\\', '/', $className);
+
+    // Handle case sensitivity for System namespace on Linux servers
+    if (str_starts_with($className, 'System/')) {
+        $className = str_replace('System/', 'system/', $className);
+    }
+
+    // Handle case sensitivity for App namespace on Linux servers
+    if (str_starts_with($className, 'App/')) {
+        $className = str_replace('App/', 'app/', $className);
+    }
+
     $file = __ROOT__ . '/' . $className . '.php';
     if (file_exists($file)) {
         require_once $file;
